@@ -48,8 +48,9 @@ export default function Portfolio() {
   return (
     <section className={s.section} id="portfolio">
       <Typography variant="h2" className={s.title}>
-        Selected Work
+        Portfolio
       </Typography>
+      <p className={s.sub}>A selection of recent projects across industries.</p>
       <div className={s.grid} ref={gridRef}>
         {empty && <p className={s.empty}>No projects to show yet.</p>}
         {projects.map((p, i) => (

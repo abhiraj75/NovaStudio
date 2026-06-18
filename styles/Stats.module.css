@@ -1,6 +1,6 @@
 .section {
-  padding: 6rem 2rem;
-  background: rgba(18, 18, 26, 0.4);
+  padding: 8rem 2rem 6rem;
+  background: rgba(20, 25, 40, 0.5);
 }
 
 .inner {
@@ -10,7 +10,8 @@
 
 .title {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 4.5rem;
+  color: #F9F6EE;
 }
 
 .grid {
@@ -27,7 +28,7 @@
 .value {
   font-size: 3rem;
   font-weight: 700;
-  color: #6c63ff;
+  color: #C9A96E;
   line-height: 1;
   margin-bottom: 0.5rem;
   font-variant-numeric: tabular-nums;
@@ -35,7 +36,7 @@
 
 .label {
   font-size: 0.95rem;
-  color: #9494a8;
+  color: #B8BEC9;
 }
 
 @media (max-width: 600px) {

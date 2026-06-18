@@ -17,7 +17,11 @@ export default function Hero() {
     <section className={s.hero}>
       <div className={s.content}>
         <span className={s.label}>Nova Studio</span>
-        <Typography variant="h1" className={s.heading}>
+        <Typography
+          variant="h1"
+          className={s.heading}
+          sx={{ fontWeight: 300, mb: "2.5rem", letterSpacing: "-0.5px" }}
+        >
           We build digital products that move people
         </Typography>
         <p className={s.sub}>
@@ -31,6 +35,7 @@ export default function Hero() {
           className={s.cta}
           onClick={scroll}
           id="hero-cta"
+          sx={{ borderRadius: "6px", px: "32px", py: "14px" }}
         >
           Start a Project
         </Button>

@@ -24,11 +24,11 @@ export default function AdminPage() {
           onClick={logout}
           id="admin-logout"
           sx={{
-            borderColor: "rgba(255,255,255,0.15)",
-            color: "#9494a8",
-            "&:hover": { borderColor: "#ff6584", color: "#ff6584" },
+            borderColor: "rgba(124, 132, 148, 0.3)",
+            color: "#7C8494",
+            "&:hover": { borderColor: "#D4705A", color: "#D4705A" },
             "&:focus-visible": {
-              outline: "2px solid #6c63ff",
+              outline: "2px solid #C9A96E",
               outlineOffset: "2px",
             },
           }}

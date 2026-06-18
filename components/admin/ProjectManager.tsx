@@ -120,9 +120,9 @@ export default function ProjectManager() {
                 onClick={() => remove(p.id)}
                 aria-label={`Delete ${p.title}`}
                 sx={{
-                  color: "#ff6584",
+                  color: "#D4705A",
                   "&:focus-visible": {
-                    outline: "2px solid #ff6584",
+                    outline: "2px solid #D4705A",
                     outlineOffset: "2px",
                   },
                 }}

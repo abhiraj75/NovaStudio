@@ -2,55 +2,70 @@
 
 import { createTheme } from "@mui/material/styles";
 
+const heading = "var(--font-heading), 'Cormorant Garamond', Georgia, serif";
+const body = "var(--font-body), 'Plus Jakarta Sans', -apple-system, sans-serif";
+
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#6C63FF",
-      light: "#8B85FF",
-      dark: "#4A42D4",
+      main: "#C9A96E",
+      light: "#E8C98A",
+      dark: "#A8894E",
     },
     secondary: {
-      main: "#FF6584",
-      light: "#FF8FA3",
-      dark: "#D44A66",
+      main: "#E8C98A",
+      light: "#F5EDD6",
+      dark: "#C9A96E",
     },
     background: {
-      default: "#0A0A0F",
-      paper: "#12121A",
+      default: "#0B0F1A",
+      paper: "#141928",
     },
     text: {
-      primary: "#E8E8ED",
-      secondary: "#9494A8",
+      primary: "#F9F6EE",
+      secondary: "#B8BEC9",
+    },
+    error: {
+      main: "#D4705A",
     },
   },
   typography: {
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    fontFamily: body,
     h1: {
+      fontFamily: heading,
       fontSize: "3.5rem",
-      fontWeight: 700,
+      fontWeight: 300,
       lineHeight: 1.1,
-      letterSpacing: "-0.02em",
+      letterSpacing: "-0.5px",
+      color: "#F9F6EE",
     },
     h2: {
-      fontSize: "2.5rem",
-      fontWeight: 700,
+      fontFamily: heading,
+      fontSize: "2.75rem",
+      fontWeight: 400,
       lineHeight: 1.2,
       letterSpacing: "-0.01em",
+      color: "#F9F6EE",
     },
     h3: {
+      fontFamily: heading,
       fontSize: "1.5rem",
-      fontWeight: 600,
+      fontWeight: 400,
       lineHeight: 1.3,
+      color: "#F9F6EE",
     },
     body1: {
+      fontFamily: body,
       fontSize: "1rem",
+      fontWeight: 400,
       lineHeight: 1.7,
-      color: "#9494A8",
+      color: "#B8BEC9",
     },
     button: {
+      fontFamily: body,
       textTransform: "none",
-      fontWeight: 600,
+      fontWeight: 500,
     },
   },
   shape: {
@@ -60,25 +75,27 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 10,
+          borderRadius: 6,
           padding: "12px 28px",
           fontSize: "1rem",
           transition: "all 0.2s ease",
           "&:focus-visible": {
-            outline: "2px solid #6C63FF",
+            outline: "2px solid #C9A96E",
             outlineOffset: "2px",
           },
           "&.MuiButton-containedPrimary": {
-            background: "linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%)",
-            boxShadow: "0 4px 20px rgba(108, 99, 255, 0.3)",
+            background: "#C9A96E",
+            color: "#0B0F1A",
+            boxShadow: "0 4px 20px rgba(201, 169, 110, 0.2)",
             "&:hover": {
-              background: "linear-gradient(135deg, #5A52E0 0%, #6C63FF 100%)",
-              boxShadow: "0 6px 28px rgba(108, 99, 255, 0.45)",
+              background: "#E8C98A",
+              boxShadow: "0 6px 28px rgba(201, 169, 110, 0.35)",
               transform: "translateY(-1px)",
             },
             "&:active": {
               transform: "translateY(0)",
-              boxShadow: "0 2px 12px rgba(108, 99, 255, 0.3)",
+              background: "#A8894E",
+              boxShadow: "0 2px 12px rgba(201, 169, 110, 0.2)",
             },
           },
         },
@@ -87,9 +104,8 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          background: "rgba(18, 18, 26, 0.8)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255, 255, 255, 0.06)",
+          background: "#141928",
+          border: "1px solid rgba(124, 132, 148, 0.15)",
           borderRadius: 16,
         },
       },
@@ -100,14 +116,20 @@ const theme = createTheme({
           "& .MuiOutlinedInput-root": {
             borderRadius: 10,
             "& fieldset": {
-              borderColor: "rgba(255, 255, 255, 0.1)",
+              borderColor: "rgba(124, 132, 148, 0.3)",
             },
             "&:hover fieldset": {
-              borderColor: "rgba(108, 99, 255, 0.4)",
+              borderColor: "rgba(201, 169, 110, 0.5)",
             },
             "&.Mui-focused fieldset": {
-              borderColor: "#6C63FF",
+              borderColor: "#C9A96E",
             },
+          },
+          "& .MuiInputLabel-root": {
+            color: "#7C8494",
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: "#C9A96E",
           },
         },
       },

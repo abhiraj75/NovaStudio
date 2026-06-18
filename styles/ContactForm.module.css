@@ -1,5 +1,5 @@
 .section {
-  padding: 6rem 2rem;
+  padding: 8rem 2rem 6rem;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -7,11 +7,12 @@
 .title {
   text-align: center;
   margin-bottom: 1rem;
+  color: #F9F6EE;
 }
 
 .sub {
   text-align: center;
-  color: #9494a8;
+  color: #B8BEC9;
   margin-bottom: 3rem;
   font-size: 1rem;
 }
@@ -26,19 +27,19 @@
   text-align: center;
   padding: 2rem;
   border-radius: 12px;
-  background: rgba(108, 99, 255, 0.08);
-  border: 1px solid rgba(108, 99, 255, 0.2);
+  background: rgba(201, 169, 110, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.2);
 }
 
 .successTitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #6c63ff;
+  color: #C9A96E;
   margin-bottom: 0.5rem;
 }
 
 .successText {
-  color: #9494a8;
+  color: #B8BEC9;
   font-size: 0.95rem;
 }
 
@@ -46,9 +47,9 @@
   text-align: center;
   padding: 1rem;
   border-radius: 8px;
-  background: rgba(255, 101, 132, 0.08);
-  border: 1px solid rgba(255, 101, 132, 0.2);
-  color: #ff6584;
+  background: rgba(212, 112, 90, 0.08);
+  border: 1px solid rgba(212, 112, 90, 0.2);
+  color: #D4705A;
   font-size: 0.9rem;
 }
 

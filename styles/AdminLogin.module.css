@@ -11,17 +11,17 @@
   max-width: 400px;
   padding: 2.5rem;
   border-radius: 16px;
-  background: rgba(18, 18, 26, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
+  background: #141928;
+  border: 1px solid rgba(124, 132, 148, 0.15);
 }
 
 .title {
   margin-bottom: 0.5rem;
+  color: #F9F6EE;
 }
 
 .sub {
-  color: #9494a8;
+  color: #B8BEC9;
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
@@ -34,12 +34,12 @@
 
 .err {
   font-size: 0.875rem;
-  color: #ff6584;
+  color: #D4705A;
   text-align: center;
   padding: 0.75rem;
   border-radius: 8px;
-  background: rgba(255, 101, 132, 0.08);
-  border: 1px solid rgba(255, 101, 132, 0.2);
+  background: rgba(212, 112, 90, 0.08);
+  border: 1px solid rgba(212, 112, 90, 0.2);
 }
 
 @media (max-width: 400px) {

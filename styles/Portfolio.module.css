@@ -1,28 +1,40 @@
 .section {
-  padding: 6rem 2rem;
+  padding: 8rem 2rem 6rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
+  color: #F9F6EE;
+}
+
+.sub {
+  text-align: center;
+  color: #7C8494;
+  font-size: 1rem;
+  margin-bottom: 4rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
 .card {
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(18, 18, 26, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #141928;
+  border: 1px solid rgba(124, 132, 148, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(40px);
+}
+
+.card:nth-child(3n) {
+  grid-column: 1 / -1;
 }
 
 .card.visible {
@@ -33,7 +45,7 @@
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(108, 99, 255, 0.2);
+  box-shadow: 0 16px 48px rgba(201, 169, 110, 0.12);
 }
 
 .card.visible:hover {
@@ -47,6 +59,10 @@
   overflow: hidden;
 }
 
+.card:nth-child(3n) .imgWrap {
+  aspect-ratio: 21 / 9;
+}
+
 .imgWrap img {
   object-fit: cover;
 }
@@ -54,7 +70,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(10, 10, 15, 0.7) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(11, 15, 26, 0.7) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -63,21 +79,25 @@
 }
 
 .projTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e8e8ed;
+  font-family: var(--font-heading), 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #F9F6EE;
   margin-bottom: 0.3rem;
 }
 
 .category {
-  font-size: 0.85rem;
-  color: #6c63ff;
+  font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  color: #C9A96E;
   font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .empty {
   text-align: center;
-  color: #9494a8;
+  color: #B8BEC9;
   padding: 3rem;
   grid-column: 1 / -1;
 }
@@ -85,6 +105,12 @@
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .card:nth-child(3n) {
+    grid-column: auto;
+  }
+  .card:nth-child(3n) .imgWrap {
+    aspect-ratio: 16 / 10;
   }
 }
 
@@ -94,6 +120,6 @@
     gap: 1.5rem;
   }
   .section {
-    padding: 4rem 1.5rem;
+    padding: 5rem 1.5rem 4rem;
   }
 }
