@@ -1,17 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import Portfolio from "@/components/Portfolio";
+import Stats from "@/components/Stats";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   return (
-    <Box
-      component="main"
-      sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Typography variant="h1">Nova Studio</Typography>
-    </Box>
+    <main>
+      <Hero />
+      <Services />
+      <Portfolio />
+      <Stats />
+      <ContactForm />
+    </main>
   );
 }

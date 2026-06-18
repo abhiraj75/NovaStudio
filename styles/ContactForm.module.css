@@ -1,0 +1,66 @@
+.section {
+  padding: 6rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sub {
+  text-align: center;
+  color: #9494a8;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.success {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(108, 99, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+}
+
+.successTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #6c63ff;
+  margin-bottom: 0.5rem;
+}
+
+.successText {
+  color: #9494a8;
+  font-size: 0.95rem;
+}
+
+.errBanner {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 101, 132, 0.08);
+  border: 1px solid rgba(255, 101, 132, 0.2);
+  color: #ff6584;
+  font-size: 0.9rem;
+}
+
+.submit {
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  .submit {
+    align-self: stretch;
+  }
+}

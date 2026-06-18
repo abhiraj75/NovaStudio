@@ -1,0 +1,52 @@
+.section {
+  padding: 6rem 2rem;
+  background: rgba(18, 18, 26, 0.4);
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #6c63ff;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: #9494a8;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .value {
+    font-size: 2.5rem;
+  }
+  .section {
+    padding: 4rem 1.5rem;
+  }
+}
