@@ -12,20 +12,9 @@ type Project = {
   imageUrl: string;
 };
 
-export default function Portfolio() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [empty, setEmpty] = useState(false);
+export default function Portfolio({ projects }: { projects: Project[] }) {
+  const [empty] = useState(projects.length === 0);
   const gridRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    fetch("/api/projects")
-      .then((r) => r.json())
-      .then((data: Project[]) => {
-        setProjects(data);
-        if (data.length === 0) setEmpty(true);
-      })
-      .catch(() => setEmpty(true));
-  }, []);
 
   useEffect(() => {
     if (!gridRef.current) return;

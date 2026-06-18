@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/db";
+import { getProjects } from "@/lib/data";
 import { validateProject, hasErrors } from "@/lib/validation";
 
 export async function GET() {
   try {
-    const projects = await prisma.project.findMany({ orderBy: { createdAt: "desc" } });
+    const projects = await getProjects();
     return NextResponse.json(projects);
   } catch {
     return NextResponse.json({ error: "internal server error" }, { status: 500 });

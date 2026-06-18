@@ -4,15 +4,22 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Stats from "@/components/Stats";
 import ContactForm from "@/components/ContactForm";
+import { getServices, getProjects, getStats } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const [services, projects, stats] = await Promise.all([
+    getServices(),
+    getProjects(),
+    getStats(),
+  ]);
+
   return (
     <main>
       <Nav />
       <Hero />
-      <Services />
-      <Portfolio />
-      <Stats />
+      <Services services={services} />
+      <Portfolio projects={projects} />
+      <Stats stats={stats} />
       <ContactForm />
     </main>
   );

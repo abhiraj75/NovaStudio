@@ -40,17 +40,9 @@ function StatItem({ stat, active }: { stat: Stat; active: boolean }) {
   );
 }
 
-export default function Stats() {
-  const [stats, setStats] = useState<Stat[]>([]);
+export default function Stats({ stats }: { stats: Stat[] }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    fetch("/api/stats")
-      .then((r) => r.json())
-      .then(setStats)
-      .catch(() => {});
-  }, []);
 
   const observe = useCallback((node: HTMLDivElement | null) => {
     if (!node) return;
