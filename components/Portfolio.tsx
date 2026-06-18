@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import s from "@/styles/Portfolio.module.css";
+import f from "@/styles/PortfolioFilter.module.css";
 
 type Project = {
   id: string;
@@ -13,8 +14,28 @@ type Project = {
 };
 
 export default function Portfolio({ projects }: { projects: Project[] }) {
-  const [empty] = useState(projects.length === 0);
+  const [active, setActive] = useState("All");
+  const [query, setQuery] = useState("");
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(projects.map((p) => p.category)));
+    return ["All", ...cats];
+  }, [projects]);
+
+  const filtered = useMemo(() => {
+    let list = projects;
+    if (active !== "All") list = list.filter((p) => p.category === active);
+    if (query.trim()) {
+      const q = query.trim().toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+    return list;
+  }, [projects, active, query]);
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -32,7 +53,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     );
     cards.forEach((c) => observer.observe(c));
     return () => observer.disconnect();
-  }, [projects]);
+  }, [filtered]);
 
   return (
     <section className={s.section} id="portfolio">
@@ -40,9 +61,32 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
         Portfolio
       </Typography>
       <p className={s.sub}>A selection of recent projects across industries.</p>
+
+      <div className={f.filters}>
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={cat === active ? f.filterBtnActive : f.filterBtn}
+            onClick={() => setActive(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+        <input
+          type="text"
+          className={f.search}
+          placeholder="Search projects..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          id="portfolio-search"
+        />
+      </div>
+
       <div className={s.grid} ref={gridRef}>
-        {empty && <p className={s.empty}>No projects to show yet.</p>}
-        {projects.map((p, i) => (
+        {filtered.length === 0 && (
+          <p className={s.empty}>No projects match your filter.</p>
+        )}
+        {filtered.map((p, i) => (
           <div
             key={p.id}
             className={s.card}
