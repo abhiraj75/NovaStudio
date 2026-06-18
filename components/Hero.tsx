@@ -1,10 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
 import { Typography, Button } from "@mui/material";
+import { track } from "@/lib/analytics";
 import s from "@/styles/Hero.module.css";
 
 export default function Hero() {
+  useEffect(() => { track("page_visit", "/"); }, []);
+
   const scroll = () => {
+    track("cta_click", "/");
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
