@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createSession } from "@/lib/auth";
+import { createSession, destroySession } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,4 +15,9 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json({ error: "internal server error" }, { status: 500 });
   }
+}
+
+export async function DELETE() {
+  await destroySession();
+  return NextResponse.json({ ok: true });
 }

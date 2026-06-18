@@ -1,0 +1,147 @@
+.page {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.panel {
+  border-radius: 16px;
+  background: rgba(18, 18, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem;
+}
+
+.panelTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: #e8e8ed;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  color: #9494a8;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e8e8ed;
+  vertical-align: top;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.msg {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  text-align: center;
+  color: #9494a8;
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.projList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.projItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.875rem;
+}
+
+.projItem:last-child {
+  border-bottom: none;
+}
+
+.projInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.projName {
+  color: #e8e8ed;
+  font-weight: 500;
+}
+
+.projCat {
+  color: #6c63ff;
+  font-size: 0.8rem;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #9494a8;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .table {
+    font-size: 0.8rem;
+  }
+  .table th,
+  .table td {
+    padding: 0.5rem;
+  }
+}
