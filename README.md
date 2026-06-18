@@ -1,6 +1,6 @@
 # Nova Studio
 
-Fullstack web app for a fictional digital agency. Public marketing site with hero, services, portfolio, stats, and contact sections — all backed by live API endpoints and a Postgres database. Includes a protected admin panel for managing contact submissions and portfolio projects.
+Fullstack web app for a digital agency. Server-rendered landing page with hero, services, portfolio (filterable), stats, and contact sections — backed by Postgres and MongoDB. Includes a protected admin panel for managing contact submissions and portfolio projects.
 
 ## Setup
 
@@ -47,6 +47,8 @@ npm start
 - Postgres via Prisma (projects, contacts, stats, services)
 - MongoDB via native driver (analytics events)
 - Auth: env credentials + HMAC-signed httpOnly session cookie + middleware guard
+- Typography: Cormorant Garamond (headlines) + Plus Jakarta Sans (body/UI)
+- Palette: midnight navy, champagne gold, ivory, silver slate
 
 ## API
 
@@ -67,6 +69,10 @@ Validation: title/category max 120 chars, name max 100, email format check, mess
 
 ## Design Decisions
 
+**Server-side rendering with shared data layer.** The landing page is an async server component that fetches services, projects, and stats in parallel via `lib/data.ts`. The same data-access functions are used by the API route handlers, so there is one source of truth for queries. Client components that need browser APIs (IntersectionObserver, count-up animation) receive data as props rather than fetching from the API.
+
+**Two-font typography system.** Cormorant Garamond (serif, weight 300-400) for all headlines and display text. Plus Jakarta Sans (sans-serif, weight 400-500) for body, nav, buttons, and captions. The contrast between light serif headlines and clean sans UI creates an editorial feel without homogenising the two.
+
 **Auth without NextAuth.** The spec calls for a single admin credential, so a full auth library adds complexity without benefit. Instead: env-stored credentials, HMAC-SHA256 signed cookie payload with expiry, and edge middleware that verifies the signature on every admin request. The same HMAC logic runs in both the Node runtime (crypto module for cookie creation) and the edge runtime (Web Crypto API for middleware verification).
 
 **Shared validation.** `lib/validation.ts` is imported by both client components and server route handlers. Client-side validation gives instant feedback; server-side validation is the real gate. One module, two consumers, no drift.
@@ -75,6 +81,8 @@ Validation: title/category max 120 chars, name max 100, email format check, mess
 
 **MongoDB for analytics only.** Postgres handles all structured data. MongoDB stores fire-and-forget analytics events (page visits, CTA clicks) via the native driver. The write is async and never blocks the UI.
 
-**MUI + CSS Modules split.** MUI handles component-level styling (buttons, text fields, cards) and theming. CSS Modules handle layout, animations, and section-specific responsive rules. This avoids fighting MUI's style system for structural layout while keeping the design system consistent.
+**Portfolio filtering.** Category filter pills are derived dynamically from project data. A search box filters by title and category. Both run client-side over server-provided data — instant, no API round-trips. Cards re-observe on filter change for scroll-reveal animation.
+
+**MUI + CSS Modules split.** MUI handles component-level styling (buttons, text fields) and theming. CSS Modules handle layout, animations, and section-specific responsive rules. The `sx` prop is used sparingly where Emotion specificity needs to beat CSS Modules (e.g. heading font-weight).
 
 **Scroll-triggered animations.** Portfolio cards and stats use IntersectionObserver to trigger entrance animations once per element. The observer disconnects after firing to avoid re-triggers on scroll-back.
