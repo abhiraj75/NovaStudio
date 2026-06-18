@@ -13,7 +13,7 @@ type Project = {
   imageUrl: string;
 };
 
-export default function Portfolio({ projects }: { projects: Project[] }) {
+export default function Portfolio({ projects = [] }: { projects: Project[] }) {
   const [active, setActive] = useState("All");
   const [query, setQuery] = useState("");
   const gridRef = useRef<HTMLDivElement>(null);

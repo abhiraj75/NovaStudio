@@ -40,7 +40,7 @@ function StatItem({ stat, active }: { stat: Stat; active: boolean }) {
   );
 }
 
-export default function Stats({ stats }: { stats: Stat[] }) {
+export default function Stats({ stats = [] }: { stats: Stat[] }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

@@ -7,7 +7,7 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-export default function Services({ services }: { services: Service[] }) {
+export default function Services({ services = [] }: { services: Service[] }) {
   return (
     <section className={s.section} id="services">
       <Typography variant="h2" className={s.title}>
