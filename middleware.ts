@@ -39,8 +39,9 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/api/contacts") ||
     pathname.startsWith("/api/admin") ||
     (pathname.startsWith("/api/projects") && req.method !== "GET");
+  const isLoginApi = pathname === "/api/admin/login";
 
-  if (isLoginPage) return NextResponse.next();
+  if (isLoginPage || isLoginApi) return NextResponse.next();
 
   if (isAdminPage && !authed) {
     return NextResponse.redirect(new URL("/admin/login", req.url));
