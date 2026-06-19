@@ -2,7 +2,7 @@
 
 Fullstack web app for a digital agency. Server-rendered landing page with hero, services, portfolio (filterable), stats, and contact sections — backed by Postgres and MongoDB. Includes a protected admin panel for managing contact submissions and portfolio projects.
 
-## Setup
+## Setup and Run Steps
 
 ```bash
 git clone https://github.com/abhiraj75/NovaStudio.git
@@ -59,7 +59,7 @@ npm start
 - Typography: Cormorant Garamond (headlines) + Plus Jakarta Sans (body/UI)
 - Palette: midnight navy, champagne gold, ivory, silver slate
 
-## API
+## API Documentation
 
 | Method | Route | Auth | Request Body | Success | Errors |
 |--------|-------|------|-------------|---------|--------|
@@ -76,22 +76,22 @@ npm start
 
 Validation: title/category max 120 chars, name max 100, email format check, message max 1000, imageUrl must be a path or http(s) URL, analytics type must be `cta_click` or `page_visit`.
 
-## Design Decisions
+## Design Decisions and Trade-offs
 
-**Server-side rendering with shared data layer.** The landing page is an async server component that fetches services, projects, and stats in parallel via `lib/data.ts`. The same data-access functions are used by the API route handlers, so there is one source of truth for queries. Client components that need browser APIs (IntersectionObserver, count-up animation) receive data as props rather than fetching from the API.
+**Server-side rendering with shared data layer:** The landing page is an async server component that fetches services, projects, and stats in parallel via `lib/data.ts`. The same data-access functions are used by the API route handlers, so there is one source of truth for queries. Client components that need browser APIs (IntersectionObserver, count-up animation) receive data as props rather than fetching from the API.
 
-**Two-font typography system.** Cormorant Garamond (serif, weight 300-400) for all headlines and display text. Plus Jakarta Sans (sans-serif, weight 400-500) for body, nav, buttons, and captions. The contrast between light serif headlines and clean sans UI creates an editorial feel without homogenising the two.
+**Two-font typography system:** Cormorant Garamond (serif, weight 300-400) for all headlines and display text. Plus Jakarta Sans (sans-serif, weight 400-500) for body, nav, buttons, and captions. The contrast between light serif headlines and clean sans UI creates an editorial feel without homogenising the two.
 
-**Auth without NextAuth.** The spec calls for a single admin credential, so a full auth library adds complexity without benefit. Instead: env-stored credentials, HMAC-SHA256 signed cookie payload with expiry, and edge middleware that verifies the signature on every admin request. The same HMAC logic runs in both the Node runtime (crypto module for cookie creation) and the edge runtime (Web Crypto API for middleware verification).
+**Auth without NextAuth:** The spec calls for a single admin credential, so a full auth library adds complexity without benefit. Instead: env-stored credentials, HMAC-SHA256 signed cookie payload with expiry, and edge middleware that verifies the signature on every admin request. The same HMAC logic runs in both the Node runtime (crypto module for cookie creation) and the edge runtime (Web Crypto API for middleware verification).
 
-**Shared validation.** `lib/validation.ts` is imported by both client components and server route handlers. Client-side validation gives instant feedback; server-side validation is the real gate. One module, two consumers, no drift.
+**Shared validation:** `lib/validation.ts` is imported by both client components and server route handlers. Client-side validation gives instant feedback; server-side validation is the real gate. One module, two consumers, no drift.
 
-**Prisma 7 adapter pattern.** Prisma 7 removed the `url` field from `schema.prisma` and requires a driver adapter passed to the PrismaClient constructor. We use `@prisma/adapter-pg` with a `pg.Pool` for the Postgres connection instead of Prisma's built-in connection handling.
+**Prisma 7 adapter pattern:** Prisma 7 removed the `url` field from `schema.prisma` and requires a driver adapter passed to the PrismaClient constructor. We use `@prisma/adapter-pg` with a `pg.Pool` for the Postgres connection instead of Prisma's built-in connection handling.
 
-**MongoDB for analytics only.** Postgres handles all structured data. MongoDB stores fire-and-forget analytics events (page visits, CTA clicks) via the native driver. The write is async and never blocks the UI.
+**MongoDB for analytics only:** Postgres handles all structured data. MongoDB stores fire-and-forget analytics events (page visits, CTA clicks) via the native driver. The write is async and never blocks the UI.
 
-**Portfolio filtering.** Category filter pills are derived dynamically from project data. A search box filters by title and category. Both run client-side over server-provided data — instant, no API round-trips. Cards re-observe on filter change for scroll-reveal animation.
+**Portfolio filtering:** Category filter pills are derived dynamically from project data. A search box filters by title and category. Both run client-side over server-provided data — instant, no API round-trips. Cards re-observe on filter change for scroll-reveal animation.
 
-**MUI + CSS Modules split.** MUI handles component-level styling (buttons, text fields) and theming. CSS Modules handle layout, animations, and section-specific responsive rules. The `sx` prop is used sparingly where Emotion specificity needs to beat CSS Modules (e.g. heading font-weight).
+**MUI + CSS Modules split:** MUI handles component-level styling (buttons, text fields) and theming. CSS Modules handle layout, animations, and section-specific responsive rules. The `sx` prop is used sparingly where Emotion specificity needs to beat CSS Modules (e.g. heading font-weight).
 
-**Scroll-triggered animations.** Portfolio cards and stats use IntersectionObserver to trigger entrance animations once per element. The observer disconnects after firing to avoid re-triggers on scroll-back.
+**Scroll-triggered animations:** Portfolio cards and stats use IntersectionObserver to trigger entrance animations once per element. The observer disconnects after firing to avoid re-triggers on scroll-back.
