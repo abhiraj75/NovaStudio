@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import prisma from "@/lib/db";
 
 export async function DELETE(
@@ -8,6 +9,7 @@ export async function DELETE(
   try {
     const { id } = await params;
     await prisma.project.delete({ where: { id } });
+    revalidatePath("/");
     return new NextResponse(null, { status: 204 });
   } catch (e: unknown) {
     const code = (e as { code?: string }).code;

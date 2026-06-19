@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import prisma from "@/lib/db";
 import { getProjects } from "@/lib/data";
 import { validateProject, hasErrors } from "@/lib/validation";
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
     const project = await prisma.project.create({
       data: { title: body.title.trim(), category: body.category.trim(), imageUrl: body.imageUrl.trim() },
     });
+    revalidatePath("/");
     return NextResponse.json(project, { status: 201 });
   } catch {
     return NextResponse.json({ error: "internal server error" }, { status: 500 });
