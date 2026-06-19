@@ -26,6 +26,11 @@
   color: #B8BEC9;
 }
 
+.filterBtn:focus-visible {
+  outline: 2px solid #C9A96E;
+  outline-offset: 2px;
+}
+
 .filterBtnActive {
   composes: filterBtn;
   border-color: #C9A96E;
@@ -51,6 +56,8 @@
   color: #7C8494;
 }
 
-.search:focus {
+.search:focus-visible {
   border-color: rgba(201, 169, 110, 0.5);
+  outline: 2px solid #C9A96E;
+  outline-offset: 2px;
 }
