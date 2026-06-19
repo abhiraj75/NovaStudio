@@ -33,6 +33,15 @@ Start the dev server:
 npm run dev
 ```
 
+Live deployment: https://abhiraj-nova-studio.vercel.app
+
+Admin panel: `/admin/login`
+
+```
+Username: admin
+Password: abc123
+```
+
 Production build:
 
 ```bash
